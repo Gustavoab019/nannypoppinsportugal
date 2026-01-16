@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { leadSchema } from "@/components/forms/formSchema";
 import { connectToDatabase } from "@/lib/mongo";
-import Lead from "@/models/Lead";
-
 export async function POST(request: Request) {
   const body = await request.json();
   const parsed = leadSchema.safeParse(body);
@@ -19,6 +17,7 @@ export async function POST(request: Request) {
   }
 
   await connectToDatabase();
+  const { default: Lead } = await import("@/models/Lead");
   const created = await Lead.create(parsed.data);
 
   return NextResponse.json(

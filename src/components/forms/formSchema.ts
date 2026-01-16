@@ -12,9 +12,9 @@ export const leadSchema = z.object({
   email: z.string().email("Please enter a valid email."),
   whatsapp: z.string().min(6, "WhatsApp number is required."),
   city: z.string().min(2, "City is required."),
-  serviceType: z.enum(["one_time", "part_time", "full_time"], {
-    required_error: "Select a service type.",
-  }),
+  serviceType: z
+    .enum(["one_time", "part_time", "full_time"])
+    .refine((value) => value.length > 0, "Select a service type."),
   childrenCount: z.coerce
     .number()
     .int("Children count must be a whole number.")
@@ -28,9 +28,9 @@ export const leadSchema = z.object({
     emptyToUndefined,
     z.string().max(500, "Max 500 characters.").optional()
   ),
-  budgetRange: z.enum(["low", "mid", "high"], {
-    required_error: "Select a budget range.",
-  }),
+  budgetRange: z
+    .enum(["low", "mid", "high"])
+    .refine((value) => value.length > 0, "Select a budget range."),
   languagePreference: z.preprocess(
     emptyToUndefined,
     z.string().max(120, "Max 120 characters.").optional()

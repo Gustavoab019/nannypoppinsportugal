@@ -1,15 +1,11 @@
-import mongoose from "mongoose";
+import type { Mongoose } from "mongoose";
 
 type MongooseCache = {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
+  conn: Mongoose | null;
+  promise: Promise<Mongoose> | null;
 };
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI is not set");
-}
+const MONGODB_URI = process.env.MONGODB_URI ?? "";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -28,7 +24,13 @@ export async function connectToDatabase() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI);
+    if (!MONGODB_URI) {
+      throw new Error("MONGODB_URI is not set");
+    }
+    cached.promise = import("mongoose").then((mongooseModule) => {
+      const mongoose = "default" in mongooseModule ? mongooseModule.default : mongooseModule;
+      return mongoose.connect(MONGODB_URI);
+    });
   }
 
   cached.conn = await cached.promise;
