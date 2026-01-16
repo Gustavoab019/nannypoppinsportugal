@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NannyPoppins Rebranding
 
-## Getting Started
+Next.js (App Router) + TypeScript + Tailwind + MongoDB (Mongoose) base focused on lead capture.
 
-First, run the development server:
+## Getting started
+
+1) Install dependencies:
+
+```bash
+npm install
+```
+
+2) Create a local `.env` file from the template:
+
+```bash
+cp .env.example .env
+```
+
+3) Add your MongoDB connection string to `.env`:
+
+```bash
+MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/nannypoppins
+```
+
+4) Run the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## MongoDB setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Use MongoDB Atlas or a local instance.
+- Ensure the database user has read/write access.
+- The lead intake API uses the `Lead` model with Mongoose.
 
-## Learn More
+## Lead intake endpoint
 
-To learn more about Next.js, take a look at the following resources:
+`POST /api/leads`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Example payload:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```json
+{
+  "fullName": "Jane Doe",
+  "email": "jane@email.com",
+  "whatsapp": "+00 00000-0000",
+  "city": "Miami",
+  "serviceType": "full_time",
+  "childrenCount": 2,
+  "childrenAges": "2, 5",
+  "startDate": "2024-08-01",
+  "scheduleNotes": "Weekdays 8am to 6pm",
+  "budgetRange": "mid",
+  "languagePreference": "English",
+  "notes": "We have a dog"
+}
+```
 
-## Deploy on Vercel
+Responses:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `201` -> `{ "ok": true, "id": "..." }`
+- `400` -> `{ "ok": false, "error": "validation_error", "details": { ... } }`
+# nannypoppinsportugal
