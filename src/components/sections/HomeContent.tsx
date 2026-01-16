@@ -134,7 +134,7 @@ const rates = [
 
 export default function HomeContent() {
   return (
-    <div className="bg-[#F8FAFC]">
+    <div className="bg-[#F8FAFC] text-[#0F172A]">
       <section className="mx-auto w-full max-w-6xl px-6 pb-16">
         <div className="grid gap-10 rounded-3xl border border-[#E2E8F0] bg-white p-10 md:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5 text-[#0F172A]">
@@ -305,11 +305,11 @@ export default function HomeContent() {
             Here is what our clients have to say about us.
           </p>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory md:grid md:grid-cols-2 md:overflow-visible md:pb-0 md:snap-none">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
-              className="rounded-3xl border border-[#E2E8F0] bg-white p-6 shadow-sm"
+              className="min-w-[85%] snap-start rounded-3xl border border-[#E2E8F0] bg-white p-6 shadow-sm md:min-w-0"
             >
               <p className="text-sm text-[#334155]">“{testimonial.quote}”</p>
               <div className="mt-4 text-sm font-semibold text-[#0F172A]">
