@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "NannyPoppins | Premium Nanny Matching",
   description:
     "Find trusted, vetted nannies for one-time, part-time, or full-time care.",
+  icons: {
+    icon: "/logo-favicon.png",
+    apple: "/logo-favicon.png",
+  },
 };
 
 export default function RootLayout({
