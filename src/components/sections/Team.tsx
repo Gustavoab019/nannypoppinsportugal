@@ -34,7 +34,7 @@ const teamMembers = [
 
 export default function Team() {
   return (
-    <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
+    <section className="relative pb-24 pt-32 lg:pb-32 lg:pt-40 bg-white overflow-hidden">
       {/* Subtle background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(168,213,209,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(168,213,209,0.02)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
@@ -71,6 +71,8 @@ export default function Team() {
                   src={member.image}
                   alt={member.name}
                   fill
+                  sizes="128px"
+                  loading="lazy"
                   className={`object-cover transition-transform duration-300 group-hover:scale-105 ${member.imagePosition}`}
                 />
               </div>

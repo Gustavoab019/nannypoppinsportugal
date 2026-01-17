@@ -206,6 +206,7 @@ export default function Hero() {
                 alt="Trustpilot"
                 width={80}
                 height={32}
+                loading="lazy"
                 className="h-8 w-auto"
               />
             </div>
