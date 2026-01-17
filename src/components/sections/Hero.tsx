@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -98,12 +99,13 @@ export default function Hero() {
           {/* Social Proof */}
           <div className="animate-fade-in-up delay-500 pt-4 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 text-sm">
             <div className="flex -space-x-2">
-              {[1, 2, 3, 4, 5].map((i) => (
+              {["RK", "NM", "FZ", "CS", "LF"].map((initials, i) => (
                 <div
                   key={i}
                   className="h-10 w-10 rounded-full border-2 border-white bg-gradient-to-br from-[#A8D5D1] to-[#7BBFB9] shadow-sm flex items-center justify-center text-white text-xs font-semibold"
+                  title={["Rachel Krider", "Nerea Mendia", "Frida Zetterberg", "Carina Soccal", "Laura Fournier"][i]}
                 >
-                  {String.fromCharCode(64 + i)}
+                  {initials}
                 </div>
               ))}
             </div>
@@ -155,8 +157,8 @@ export default function Hero() {
           {/* Stats Row */}
           <div className="grid grid-cols-2 gap-4">
             <div className="card-premium p-5 text-center animate-fade-in-up delay-300">
-              <div className="text-3xl font-bold text-gray-900">98%</div>
-              <div className="text-sm text-gray-500 mt-1">Client Satisfaction</div>
+              <div className="text-3xl font-bold text-gray-900">86%</div>
+              <div className="text-sm text-gray-500 mt-1">5-Star Reviews</div>
             </div>
             <div className="card-premium p-5 text-center animate-fade-in-up delay-400">
               <div className="text-3xl font-bold text-gray-900">5+</div>
@@ -165,32 +167,49 @@ export default function Hero() {
           </div>
 
           {/* Trustpilot Card */}
-          <div className="card-premium px-6 py-5 animate-fade-in-up delay-500">
+          <a
+            href="https://www.trustpilot.com/review/nannypoppins.pt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-premium px-6 py-5 animate-fade-in-up delay-500 block hover:shadow-xl transition-shadow"
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="flex text-[#00B67A]">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg
-                      key={star}
-                      className="w-5 h-5"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                {/* Trustpilot Stars */}
+                <div className="flex">
+                  {[1, 2, 3, 4].map((star) => (
+                    <div key={star} className="w-6 h-6 bg-[#00B67A] flex items-center justify-center">
+                      <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                      </svg>
+                    </div>
                   ))}
+                  <div className="w-6 h-6 bg-[#DCDCE6] flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute left-0 top-0 bottom-0 w-[10%] bg-[#00B67A]"></div>
+                    <svg className="w-3.5 h-3.5 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                  </div>
                 </div>
                 <div>
-                  <div className="font-semibold text-gray-900">Excellent</div>
-                  <div className="text-xs text-gray-500">Based on Trustpilot reviews</div>
+                  <div className="font-semibold text-gray-900 flex items-center gap-1.5">
+                    <span className="text-[#00B67A]">Great</span>
+                    <span className="text-gray-400">·</span>
+                    <span>4.1</span>
+                  </div>
+                  <div className="text-xs text-gray-500">22 reviews on Trustpilot</div>
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-2xl font-bold text-gray-900">4.9</div>
-                <div className="text-xs text-gray-500">Rating</div>
-              </div>
+              {/* Trustpilot Logo */}
+              <Image
+                src="/trustpilot.png"
+                alt="Trustpilot"
+                width={80}
+                height={32}
+                className="h-8 w-auto"
+              />
             </div>
-          </div>
+          </a>
         </div>
       </div>
 

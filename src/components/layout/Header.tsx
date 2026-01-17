@@ -62,6 +62,12 @@ export default function Header() {
           >
             About Us
           </Link>
+          <Link
+            href="/team"
+            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-200"
+          >
+            Our Team
+          </Link>
         </nav>
 
         {/* CTA Buttons */}
